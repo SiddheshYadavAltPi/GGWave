@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GGWave</title>
+    <style>
+        #main-container {
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .contacts {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            display: block;
+            margin: 15px auto 0 auto;
+            font-size: large;
+        }
+        textarea{   
+            resize: none;
+            padding: 5px;
+        }
+
+        .btn {
+            border: 2px solid red;
+            background: none;
+            border-radius: 5px;
+            color: crimson;
+            padding: 5px;
+            font-size: large;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main-container">
+        <h2>Transfer selected Contact with GGWave</h2>
+        <br>
+        <button class="contacts" onclick="openContactPicker()">Open phone contacts</button>
+        <h3>Send Text:</h3>
+        <textarea name="textarea" id="txData" style="width:80%;height:100px;">Hello javascript</textarea><br>
+        
+        <button class="btn" onclick="onSend();">Send</button>
+
+        <br><br>
+
+        <!-- QR CODE  -->
+        <div class="qr-code-container">
+            <div class="qr-code" style></div>
+        </div>
+
+
+        <h3>Receieved Text:</h3> <textarea name="textarea" id="rxData" style="width:80%;height:100px;"
+            disabled></textarea><br>
+
+        <button class="btn" id="captureStart">Start capturing</button>
+        <button id="captureStop" hidden>Stop capturing</button>
+        <button class="contacts" id="save-btn">Save Contact</button>
+        <div class="row">
+            <div class="col">
+                <div id="reader"></div>
+            </div>
+            <div class="col" style="padding: 30px">
+                <h4>Scan Result </h4>
+                <div id="result">
+                    Result goes here
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.2.0/html5-qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+    <script src="script.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyBD3rUMW6P0h51eyV5EqlUn1TL902rwiZM",
+            authDomain: "ggwave-39a81.firebaseapp.com",
+            projectId: "ggwave-39a81",
+            storageBucket: "ggwave-39a81.appspot.com",
+            messagingSenderId: "409156117165",
+            appId: "1:409156117165:web:48f93dfd569a44f9841c24",
+            measurementId: "G-BSRZ8V7BKR"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+</body>
+
+</html>
